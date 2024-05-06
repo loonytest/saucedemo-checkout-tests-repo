@@ -204,6 +204,25 @@ public class PageObjectModelTest {
         delay();
     }
 
+    @Feature("Checkout flow")
+    @Story("Order completion")
+    @Description("Test to verify the order completion functionality")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Link("https://www.saucedemo.com/checkout-complete.html")
+    @Tags({@Tag("order completion"), @Tag("checkout")})
+    @Owner("Jackson Smith")
+    @Flaky
+    @Step("Verify order completion page")
+    @Test(dependsOnMethods = "testFinalCheckout")
+    public void testOrderCompletionSuccess() {
+        finalCheckoutPage.finishCheckout();
+
+        Assert.assertEquals(orderCompletionPage.getHeaderText(), "Thank you for your order!");
+        Assert.assertEquals(orderCompletionPage.getBodyText(),
+                "Your order has been dispatched, and will arrive just as fast as the pony can get there!");
+
+        delay();
+    }
 
     @AfterClass
     public void tearDown() {
