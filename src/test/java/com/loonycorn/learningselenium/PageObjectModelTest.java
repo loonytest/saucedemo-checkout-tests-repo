@@ -224,6 +224,11 @@ public class PageObjectModelTest {
         delay();
     }
 
+    @Test(dependsOnMethods = "testOrderCompletionSuccess")
+    public void testDummy() {
+        Assert.assertTrue(true);
+    }
+
     @AfterClass
     public void tearDown() {
         if (driver != null) {
